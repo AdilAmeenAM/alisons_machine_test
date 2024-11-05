@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:alisons_machine_test/core/utils/snackbar_utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:alisons_machine_test/feature/authentication/models/login_response_model.dart';
 
@@ -16,8 +15,6 @@ class AuthServices {
         token: json['customerdata']['token'],
         userId: json['customerdata']['id'],
       );
-    } else {
-      SnackBarUtils.showMessage('Login failed, try again');
     }
 
     throw Exception('Login failed.');

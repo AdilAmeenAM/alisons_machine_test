@@ -13,12 +13,18 @@ class LoginPage extends HookConsumerWidget {
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
 
+    final isLoading = useState(false);
+
     /// Callback to execute when the user taps the Sign In button.
-    void onSignIn() {
+    Future<void> onSignIn() async {
+      isLoading.value = true;
+
       final email = emailController.text;
       final password = passwordController.text;
 
-      ref.read(authControllerProvider.notifier).login(email, password);
+      await ref.read(authControllerProvider.notifier).login(email, password);
+
+      isLoading.value = false;
     }
 
     return Scaffold(
@@ -112,10 +118,13 @@ class LoginPage extends HookConsumerWidget {
                         padding: const EdgeInsets.symmetric(vertical: 15),
                       ),
                       onPressed: onSignIn,
-                      child: const Text(
-                        'Sign In',
-                        style: TextStyle(color: Colors.black, fontSize: 18),
-                      ),
+                      child: isLoading.value
+                          ? const CircularProgressIndicator()
+                          : const Text(
+                              'Sign In',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
+                            ),
                     ),
                   ),
                   const SizedBox(height: 20),
