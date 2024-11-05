@@ -14,17 +14,19 @@ class HomePage extends StatelessWidget {
       body: FutureBuilder(
           future: HomeServices.getData(),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasError) {
+            if (snapshot.hasError) {
               return const Center(
                 child: Text('Cannot load home page, Try again'),
               );
             }
 
-            final responseData = snapshot.data!;
+            if (!snapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            final responseData = snapshot.data;
 
             return SafeArea(
               child: SingleChildScrollView(

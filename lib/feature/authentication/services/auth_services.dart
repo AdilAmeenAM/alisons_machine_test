@@ -5,16 +5,20 @@ import 'package:alisons_machine_test/feature/authentication/models/login_respons
 
 class AuthServices {
   static Future<LoginResponseModel> login(String email, String password) async {
-    final response = await http.post(Uri.parse(
-        'https://swan.alisonsnewdemo.online/api/login?email_phone=$email&password=$password'));
+    try {
+      final response = await http.post(Uri.parse(
+          'https://swan.alisonsnewdemo.online/api/login?email_phone=$email&password=$password'));
 
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        final json = jsonDecode(response.body);
 
-      return LoginResponseModel(
-        token: json['customerdata']['token'],
-        userId: json['customerdata']['id'],
-      );
+        return LoginResponseModel(
+          token: json['customerdata']['token'],
+          userId: json['customerdata']['id'],
+        );
+      }
+    } catch (e, stack) {
+      print(stack);
     }
 
     throw Exception('Login failed.');

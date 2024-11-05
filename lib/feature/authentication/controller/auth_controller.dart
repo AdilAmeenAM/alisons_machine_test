@@ -1,6 +1,9 @@
+import 'package:go_router/go_router.dart';
 import 'package:alisons_machine_test/core/utils/snackbar_utils.dart';
 import 'package:alisons_machine_test/feature/authentication/models/login_response_model.dart';
 import 'package:alisons_machine_test/feature/authentication/services/auth_services.dart';
+import 'package:alisons_machine_test/feature/home/view/pages/home_page.dart';
+import 'package:alisons_machine_test/main.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -29,6 +32,8 @@ class AuthController extends _$AuthController {
 
       _storage.write('token', response.token);
       _storage.write('userId', response.userId);
+
+      App.navigatorKey.currentContext!.push(HomePage.routePath);
     } catch (e) {
       SnackBarUtils.showMessage('Login failed');
     }

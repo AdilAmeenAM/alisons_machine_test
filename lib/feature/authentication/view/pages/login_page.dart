@@ -63,6 +63,7 @@ class LoginPage extends HookConsumerWidget {
                   const SizedBox(height: 30),
                   // Email TextField
                   TextField(
+                    controller: emailController,
                     style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       filled: true,
@@ -80,6 +81,7 @@ class LoginPage extends HookConsumerWidget {
                   const SizedBox(height: 20),
                   // Password TextField
                   TextField(
+                    controller: passwordController,
                     style: const TextStyle(color: Colors.white),
                     obscureText: true,
                     decoration: InputDecoration(
