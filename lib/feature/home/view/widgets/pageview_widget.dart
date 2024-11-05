@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 class PageviewWidget extends StatelessWidget {
-  const PageviewWidget({super.key});
+  final String imagePath;
+
+  const PageviewWidget({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       height: 385,
       width: double.infinity,
-      child: Placeholder(),
+      child: Image.network(
+        'https://swan.alisonsnewdemo.online/images/banner/$imagePath',
+        fit: BoxFit.cover,
+      ),
     );
   }
 }

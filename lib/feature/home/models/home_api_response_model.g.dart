@@ -9,50 +9,52 @@ part of 'home_api_response_model.dart';
 HomeApiResponseModel _$HomeApiResponseModelFromJson(
         Map<String, dynamic> json) =>
     HomeApiResponseModel(
-      success: (json['success'] as num).toInt(),
-      message: json['message'] as String,
-      banner1: (json['banner1'] as List<dynamic>)
-          .map((e) => Banner.fromJson(e as Map<String, dynamic>))
+      success: (json['success'] as num?)?.toInt(),
+      message: json['message'] as String?,
+      banner1: (json['banner1'] as List<dynamic>?)
+          ?.map((e) => BannerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      banner2: (json['banner2'] as List<dynamic>)
-          .map((e) => Banner.fromJson(e as Map<String, dynamic>))
+      banner2: (json['banner2'] as List<dynamic>?)
+          ?.map((e) => BannerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      banner3: (json['banner3'] as List<dynamic>)
-          .map((e) => Banner.fromJson(e as Map<String, dynamic>))
+      banner3: (json['banner3'] as List<dynamic>?)
+          ?.map((e) => BannerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      banner4: (json['banner4'] as List<dynamic>)
-          .map((e) => Banner.fromJson(e as Map<String, dynamic>))
+      banner4: (json['banner4'] as List<dynamic>?)
+          ?.map((e) => BannerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      banner5: json['banner5'] as List<dynamic>,
-      recentviews: (json['recentviews'] as List<dynamic>)
-          .map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
+      banner5: json['banner5'] as List<dynamic>?,
+      recentviews: (json['recentviews'] as List<dynamic>?)
+          ?.map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
           .toList(),
-      ourProducts: (json['our_products'] as List<dynamic>)
-          .map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
+      ourProducts: (json['our_products'] as List<dynamic>?)
+          ?.map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
           .toList(),
-      suggestedProducts: (json['suggested_products'] as List<dynamic>)
-          .map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
+      suggestedProducts: (json['suggested_products'] as List<dynamic>?)
+          ?.map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
           .toList(),
-      bestSeller: (json['best_seller'] as List<dynamic>)
-          .map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
+      bestSeller: (json['best_seller'] as List<dynamic>?)
+          ?.map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
           .toList(),
-      flashSail: (json['flash_sail'] as List<dynamic>)
-          .map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
+      flashSail: (json['flash_sail'] as List<dynamic>?)
+          ?.map((e) => BestSeller.fromJson(e as Map<String, dynamic>))
           .toList(),
-      newarrivals: json['newarrivals'] as List<dynamic>,
-      categories: (json['categories'] as List<dynamic>)
-          .map((e) => Ory.fromJson(e as Map<String, dynamic>))
+      newarrivals: json['newarrivals'] as List<dynamic>?,
+      categories: (json['categories'] as List<dynamic>?)
+          ?.map((e) => Ory.fromJson(e as Map<String, dynamic>))
           .toList(),
-      topAccessories: (json['top_accessories'] as List<dynamic>)
-          .map((e) => Ory.fromJson(e as Map<String, dynamic>))
+      topAccessories: (json['top_accessories'] as List<dynamic>?)
+          ?.map((e) => Ory.fromJson(e as Map<String, dynamic>))
           .toList(),
-      featuredbrands: (json['featuredbrands'] as List<dynamic>)
-          .map((e) => Featuredbrand.fromJson(e as Map<String, dynamic>))
+      featuredbrands: (json['featuredbrands'] as List<dynamic>?)
+          ?.map((e) => Featuredbrand.fromJson(e as Map<String, dynamic>))
           .toList(),
-      cartcount: (json['cartcount'] as num).toInt(),
-      wishlistcount: (json['wishlistcount'] as num).toInt(),
-      currency: Currency.fromJson(json['currency'] as Map<String, dynamic>),
-      notificationCount: (json['notification_count'] as num).toInt(),
+      cartcount: (json['cartcount'] as num?)?.toInt(),
+      wishlistcount: (json['wishlistcount'] as num?)?.toInt(),
+      currency: json['currency'] == null
+          ? null
+          : Currency.fromJson(json['currency'] as Map<String, dynamic>),
+      notificationCount: (json['notification_count'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$HomeApiResponseModelToJson(
@@ -80,17 +82,18 @@ Map<String, dynamic> _$HomeApiResponseModelToJson(
       'notification_count': instance.notificationCount,
     };
 
-Banner _$BannerFromJson(Map<String, dynamic> json) => Banner(
-      id: (json['id'] as num).toInt(),
-      linkType: (json['link_type'] as num).toInt(),
-      linkValue: json['link_value'] as String,
-      image: json['image'] as String,
-      title: json['title'] as String,
-      subTitle: json['sub_title'] as String,
+BannerModel _$BannerModelFromJson(Map<String, dynamic> json) => BannerModel(
+      id: (json['id'] as num?)?.toInt(),
+      linkType: (json['link_type'] as num?)?.toInt(),
+      linkValue: json['link_value'] as String?,
+      image: json['image'] as String?,
+      title: json['title'] as String?,
+      subTitle: json['sub_title'] as String?,
       logo: json['logo'],
     );
 
-Map<String, dynamic> _$BannerToJson(Banner instance) => <String, dynamic>{
+Map<String, dynamic> _$BannerModelToJson(BannerModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'link_type': instance.linkType,
       'link_value': instance.linkValue,
@@ -101,19 +104,19 @@ Map<String, dynamic> _$BannerToJson(Banner instance) => <String, dynamic>{
     };
 
 BestSeller _$BestSellerFromJson(Map<String, dynamic> json) => BestSeller(
-      productId: (json['productId'] as num).toInt(),
-      slug: json['slug'] as String,
-      code: json['code'] as String,
+      productId: (json['productId'] as num?)?.toInt(),
+      slug: json['slug'] as String?,
+      code: json['code'] as String?,
       homeImg: json['home_img'] as String?,
-      name: json['name'] as String,
+      name: json['name'] as String?,
       isGender: (json['is_gender'] as num?)?.toInt(),
-      store: json['store'] as String,
-      manufacturer: json['manufacturer'] as String,
-      oldprice: json['oldprice'] as String,
-      price: json['price'] as String,
-      image: json['image'] as String,
-      cart: (json['cart'] as num).toInt(),
-      wishlist: (json['wishlist'] as num).toInt(),
+      store: json['store'] as String?,
+      manufacturer: json['manufacturer'] as String?,
+      oldprice: json['oldprice'] as String?,
+      price: json['price'] as String?,
+      image: json['image'] as String?,
+      cart: (json['cart'] as num?)?.toInt(),
+      wishlist: (json['wishlist'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$BestSellerToJson(BestSeller instance) =>
@@ -134,8 +137,9 @@ Map<String, dynamic> _$BestSellerToJson(BestSeller instance) =>
     };
 
 Ory _$OryFromJson(Map<String, dynamic> json) => Ory(
-      category:
-          Featuredbrand.fromJson(json['category'] as Map<String, dynamic>),
+      category: json['category'] == null
+          ? null
+          : Featuredbrand.fromJson(json['category'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OryToJson(Ory instance) => <String, dynamic>{
@@ -144,10 +148,10 @@ Map<String, dynamic> _$OryToJson(Ory instance) => <String, dynamic>{
 
 Featuredbrand _$FeaturedbrandFromJson(Map<String, dynamic> json) =>
     Featuredbrand(
-      id: (json['id'] as num).toInt(),
-      slug: json['slug'] as String,
-      image: json['image'] as String,
-      name: json['name'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      slug: json['slug'] as String?,
+      image: json['image'] as String?,
+      name: json['name'] as String?,
       description: json['description'] as String?,
     );
 
@@ -161,12 +165,12 @@ Map<String, dynamic> _$FeaturedbrandToJson(Featuredbrand instance) =>
     };
 
 Currency _$CurrencyFromJson(Map<String, dynamic> json) => Currency(
-      name: json['name'] as String,
-      code: json['code'] as String,
-      symbolLeft: json['symbol_left'] as String,
-      symbolRight: json['symbol_right'] as String,
-      value: json['value'] as String,
-      status: (json['status'] as num).toInt(),
+      name: json['name'] as String?,
+      code: json['code'] as String?,
+      symbolLeft: json['symbol_left'] as String?,
+      symbolRight: json['symbol_right'] as String?,
+      value: json['value'] as String?,
+      status: (json['status'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$CurrencyToJson(Currency instance) => <String, dynamic>{
